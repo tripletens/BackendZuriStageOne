@@ -14,7 +14,11 @@ function getValidatedUTC() {
 }
 
 // Function to get the GitHub URL of the source code
-function getSourceCodeURL() {
+function getGithubFileUrl() {
+    return "https://github.com/tripletens/BackendZuriStageOne/blob/master/taskone.php";
+}
+
+function getGithubRepoUrl() {
     return "https://github.com/tripletens/BackendZuriStageOne";
 }
 
@@ -24,7 +28,8 @@ if (isset($_GET['slack_name']) && isset($_GET['track'])) {
     $currentDay = date('l');
     $utcTime = getValidatedUTC();
     $track = $_GET['track'];
-    $sourceCodeURL = getSourceCodeURL();
+    $githubFileUrl = getGithubFileUrl();
+    $githubRepoUrl = getGithubRepoUrl();
 
     // Create the response data array
     $responseData = array(
@@ -32,10 +37,11 @@ if (isset($_GET['slack_name']) && isset($_GET['track'])) {
         "current_day" => $currentDay,
         "utc_time" => $utcTime,
         "track" => $track,
-        "source_code_url" => $sourceCodeURL,
-        "status_code" => "Success"
+        "github_file_url" => $githubFileUrl,
+        "github_repo_url" => $githubRepoUrl,
+        "status_code" => 200
     );
-
+    
     // Set the response content type to JSON
     header('Content-Type: application/json');
 
